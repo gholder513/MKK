@@ -28,7 +28,7 @@ function App() {
 
         <header className="py-6 px-4 text-center relative">
           <h1 className="text-4xl md:text-5xl font-serif font-bold mb-3 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-yellow-300 to-purple-400 animate-pulse">
-            Communion, Marry, Kill
+            Kiss, Marry, Kill
           </h1>
           <p className="text-purple-300 text-lg mb-2">
             Discover your zodiac sign through your choices
@@ -63,7 +63,7 @@ function App() {
                 </li>
                 <li className="flex items-center">
                   <span className="w-3 h-3 rounded-full bg-purple-500 mr-2"></span>
-                  <strong className="text-purple-400">Communion:</strong>
+                  <strong className="text-purple-400">Kiss:</strong>
                   <span className="ml-2">
                     Your second choice - what you'd appreciate but not commit to
                   </span>

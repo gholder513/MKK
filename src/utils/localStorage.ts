@@ -1,8 +1,8 @@
 import { GameState, ZodiacSign } from "../types";
 
 // Keys for localStorage
-const GAME_STATE_KEY = 'cmk_game_state';
-const GAME_HISTORY_KEY = 'cmk_game_history';
+const GAME_STATE_KEY = 'mkk_game_state';
+const GAME_HISTORY_KEY = 'mkk_game_history';
 
 // Save current game state
 export const saveGameState = (state: GameState): void => {

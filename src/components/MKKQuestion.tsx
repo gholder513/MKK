@@ -1,27 +1,27 @@
 import React, { useState, useEffect } from 'react';
-import { CMKOption, CMKQuestion as CMKQuestionType } from '../types';
+import { MKKOption, MKKQuestion as MKKQuestionType } from '../types';
 import { Shuffle } from 'lucide-react';
 
-interface CMKQuestionProps {
-  question: CMKQuestionType;
-  onSubmit: (choice: { communion: string; marry: string; kill: string }) => void;
+interface MKKQuestionProps {
+  question: MKKQuestionType;
+  onSubmit: (choice: { kiss: string; marry: string; kill: string }) => void;
   questionNumber: number;
   totalQuestions: number;
 }
 
-const CMKQuestion: React.FC<CMKQuestionProps> = ({ 
+const MKKQuestion: React.FC<MKKQuestionProps> = ({ 
   question, 
   onSubmit, 
   questionNumber,
   totalQuestions
 }) => {
-  const [options, setOptions] = useState<CMKOption[]>(question.options);
+  const [options, setOptions] = useState<MKKOption[]>(question.options);
   const [selectedOptions, setSelectedOptions] = useState<{
-    communion: string | null;
+    kiss: string | null;
     marry: string | null;
     kill: string | null;
   }>({
-    communion: null,
+    kiss: null,
     marry: null,
     kill: null,
   });
@@ -30,7 +30,7 @@ const CMKQuestion: React.FC<CMKQuestionProps> = ({
   useEffect(() => {
     setOptions(question.options);
     setSelectedOptions({
-      communion: null,
+      kiss: null,
       marry: null,
       kill: null,
     });
@@ -43,14 +43,14 @@ const CMKQuestion: React.FC<CMKQuestionProps> = ({
 
   // Check if an option is selected
   const getSelectedType = (optionId: string) => {
-    if (selectedOptions.communion === optionId) return 'communion';
+    if (selectedOptions.kiss === optionId) return 'kiss';
     if (selectedOptions.marry === optionId) return 'marry';
     if (selectedOptions.kill === optionId) return 'kill';
     return null;
   };
 
   // Handle option selection
-  const handleSelect = (optionId: string, type: 'communion' | 'marry' | 'kill') => {
+  const handleSelect = (optionId: string, type: 'kiss' | 'marry' | 'kill') => {
     // If already selected for this type, deselect it
     if (selectedOptions[type] === optionId) {
       setSelectedOptions({
@@ -63,7 +63,7 @@ const CMKQuestion: React.FC<CMKQuestionProps> = ({
     // If selected for another type, remove it from there
     const newSelected = { ...selectedOptions };
     
-    if (newSelected.communion === optionId) newSelected.communion = null;
+    if (newSelected.kiss === optionId) newSelected.kiss = null;
     if (newSelected.marry === optionId) newSelected.marry = null;
     if (newSelected.kill === optionId) newSelected.kill = null;
     
@@ -75,9 +75,9 @@ const CMKQuestion: React.FC<CMKQuestionProps> = ({
 
   // Handle form submission
   const handleSubmit = () => {
-    if (selectedOptions.communion && selectedOptions.marry && selectedOptions.kill) {
+    if (selectedOptions.kiss && selectedOptions.marry && selectedOptions.kill) {
       onSubmit({
-        communion: selectedOptions.communion,
+        kiss: selectedOptions.kiss,
         marry: selectedOptions.marry,
         kill: selectedOptions.kill,
       });
@@ -87,7 +87,7 @@ const CMKQuestion: React.FC<CMKQuestionProps> = ({
   };
 
   // Check if all options are selected
-  const isComplete = selectedOptions.communion && selectedOptions.marry && selectedOptions.kill;
+  const isComplete = selectedOptions.kiss && selectedOptions.marry && selectedOptions.kill;
 
   return (
     <div className="w-full max-w-3xl mx-auto p-5">
@@ -104,7 +104,7 @@ const CMKQuestion: React.FC<CMKQuestionProps> = ({
         </button>
       </div>
       
-      <h2 className="text-2xl font-serif text-center mb-8 text-white">Communion, Marry, Kill</h2>
+      <h2 className="text-2xl font-serif text-center mb-8 text-white">Kiss, Marry, Kill</h2>
       
       <div className="grid gap-4 md:grid-cols-3">
         {options.map((option) => {
@@ -114,7 +114,7 @@ const CMKQuestion: React.FC<CMKQuestionProps> = ({
           let borderColor = 'border-gray-700';
           let textColor = 'text-white';
           
-          if (selectedType === 'communion') {
+          if (selectedType === 'kiss') {
             bgColor = 'bg-purple-900';
             borderColor = 'border-purple-500';
             textColor = 'text-white';
@@ -149,14 +149,14 @@ const CMKQuestion: React.FC<CMKQuestionProps> = ({
                   Marry
                 </button>
                 <button
-                  onClick={() => handleSelect(option.id, 'communion')}
+                  onClick={() => handleSelect(option.id, 'kiss')}
                   className={`px-2 py-1 rounded text-sm font-medium transition-colors ${
-                    selectedType === 'communion'
+                    selectedType === 'kiss'
                       ? 'bg-purple-500 text-white'
                       : 'bg-purple-900 text-purple-200 hover:bg-purple-700'
                   }`}
                 >
-                  Communion
+                  Kiss
                 </button>
                 <button
                   onClick={() => handleSelect(option.id, 'kill')}
@@ -191,4 +191,4 @@ const CMKQuestion: React.FC<CMKQuestionProps> = ({
   );
 };
 
-export default CMKQuestion;
+export default MKKQuestion;

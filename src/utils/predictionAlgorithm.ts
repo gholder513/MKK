@@ -1,10 +1,10 @@
-import { CMKChoice, CMKQuestion, ZodiacPrediction, ZodiacSign } from "../types";
+import { MKKChoice, MKKQuestion, ZodiacPrediction, ZodiacSign } from "../types";
 import { zodiacProfiles } from "../data/zodiacProfiles";
 
 // Function to determine zodiac sign based on user choices
 export const predictZodiacSign = (
-  questions: CMKQuestion[],
-  choices: CMKChoice[]
+  questions: MKKQuestion[],
+  choices: MKKChoice[]
 ): ZodiacPrediction => {
   // Initialize scores for each zodiac sign
   const scores: Record<ZodiacSign, { score: number; reasons: string[] }> = {} as Record<ZodiacSign, { score: number; reasons: string[] }>;
@@ -19,11 +19,11 @@ export const predictZodiacSign = (
     if (!question) return;
     
     // Find the selected options
-    const communionOption = question.options.find(o => o.id === choice.communion);
+    const kissOption = question.options.find(o => o.id === choice.kiss);
     const marryOption = question.options.find(o => o.id === choice.marry);
     const killOption = question.options.find(o => o.id === choice.kill);
     
-    if (!communionOption || !marryOption || !killOption) return;
+    if (!kissOption || !marryOption || !killOption) return;
     
     // Update scores based on the choices
     zodiacProfiles.forEach(profile => {
@@ -37,11 +37,11 @@ export const predictZodiacSign = (
         }
       }
       
-      // Communion gets medium weight (2x)
-      if (communionOption.traits[sign]) {
-        scores[sign].score += communionOption.traits[sign] * 2;
-        if (communionOption.traits[sign] > 7) {
-          scores[sign].reasons.push(`Your Communion choice of "${communionOption.text}" reflects ${sign}'s ${getRelevantTraits(sign, communionOption.traits[sign])}`);
+      // Kiss gets medium weight (2x)
+      if (kissOption.traits[sign]) {
+        scores[sign].score += kissOption.traits[sign] * 2;
+        if (kissOption.traits[sign] > 7) {
+          scores[sign].reasons.push(`Your Kiss choice of "${kissOption.text}" reflects ${sign}'s ${getRelevantTraits(sign, kissOption.traits[sign])}`);
         }
       }
       
@@ -103,13 +103,13 @@ const getRelevantTraits = (sign: ZodiacSign, score: number): string => {
 
 // Get learning data from local storage
 export const getLearningData = (): Record<string, { predictions: Record<ZodiacSign, number>, actual: Record<ZodiacSign, number> }> => {
-  const data = localStorage.getItem('cmk_learning_data');
+  const data = localStorage.getItem('mkk_learning_data');
   return data ? JSON.parse(data) : {};
 };
 
 // Update learning data
 export const updateLearningData = (
-  choices: CMKChoice[],
+  choices: MKKChoice[],
   predictedSign: ZodiacSign,
   actualSign: ZodiacSign
 ) => {
@@ -117,7 +117,7 @@ export const updateLearningData = (
   
   // Create a key from the choices
   const key = choices.map(choice => 
-    `${choice.questionId}:${choice.marry}:${choice.communion}:${choice.kill}`
+    `${choice.questionId}:${choice.marry}:${choice.kiss}:${choice.kill}`
   ).join('|');
   
   // Initialize if needed
@@ -138,5 +138,5 @@ export const updateLearningData = (
   learningData[key].actual[actualSign] = (learningData[key].actual[actualSign] || 0) + 1;
   
   // Save back to localStorage
-  localStorage.setItem('cmk_learning_data', JSON.stringify(learningData));
+  localStorage.setItem('mkk_learning_data', JSON.stringify(learningData));
 };

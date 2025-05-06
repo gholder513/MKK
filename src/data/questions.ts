@@ -1,11 +1,11 @@
-import { CMKQuestion } from '../types';
+import { MKKQuestion } from '../types';
 import { getZodiacTraits } from './zodiacProfiles';
 
 // Generate a unique ID
 const generateId = (): string => Math.random().toString(36).substring(2, 9);
 
 // This is our bank of hypothetical scenarios/questions
-const questionsData: CMKQuestion[] = [
+const questionsData: MKKQuestion[] = [
   {
     id: generateId(),
     options: [
@@ -1080,7 +1080,7 @@ const questionsData: CMKQuestion[] = [
 ];
 
 // Function to get a random subset of questions
-export const getRandomQuestions = (count: number = 5): CMKQuestion[] => {
+export const getRandomQuestions = (count: number = 5): MKKQuestion[] => {
   if (count >= questionsData.length) return [...questionsData];
   
   const shuffled = [...questionsData].sort(() => 0.5 - Math.random());

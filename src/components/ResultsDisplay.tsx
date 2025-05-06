@@ -33,7 +33,7 @@ const ResultsDisplay: React.FC = () => {
           <h2 className="text-3xl font-serif font-bold text-white mb-2">
             Your Zodiac Prediction
           </h2>
-          <p className="text-purple-300">Based on your Communion, Marry, Kill choices</p>
+          <p className="text-purple-300">Based on your Kiss, Marry, Kill choices</p>
         </div>
         
         <div className="mb-8">

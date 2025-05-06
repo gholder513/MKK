@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { CMKChoice, CMKQuestion, GameContextType, GameState, ZodiacPrediction, ZodiacSign } from '../types';
+import { MKKChoice, MKKQuestion, GameContextType, GameState, ZodiacPrediction, ZodiacSign } from '../types';
 import { getRandomQuestions } from '../data/questions';
 import { predictZodiacSign, updateLearningData } from '../utils/predictionAlgorithm';
 import { loadGameState, saveGameState, saveGameToHistory, clearGameState } from '../utils/localStorage';
@@ -46,13 +46,13 @@ export const GameProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, [state]);
 
   // Make a choice for the current question
-  const makeChoice = (choice: { communion: string; marry: string; kill: string }) => {
+  const makeChoice = (choice: { kiss: string; marry: string; kill: string }) => {
     const currentQuestion = state.questions[state.currentQuestionIndex];
     
     // Create a new choice object
-    const newChoice: CMKChoice = {
+    const newChoice: MKKChoice = {
       questionId: currentQuestion.id,
-      communion: choice.communion,
+      kiss: choice.kiss,
       marry: choice.marry,
       kill: choice.kill
     };

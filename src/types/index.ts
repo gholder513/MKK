@@ -12,20 +12,20 @@ export type ZodiacSign =
   | 'Aquarius' 
   | 'Pisces';
 
-export type CMKOption = {
+export type MKKOption = {
   id: string;
   text: string;
   traits: Record<ZodiacSign, number>;
 };
 
-export type CMKQuestion = {
+export type MKKQuestion = {
   id: string;
-  options: [CMKOption, CMKOption, CMKOption];
+  options: [MKKOption, MKKOption, MKKOption];
 };
 
-export type CMKChoice = {
+export type MKKChoice = {
   questionId: string;
-  communion: string;
+  kiss: string;
   marry: string;
   kill: string;
 };
@@ -37,9 +37,9 @@ export type ZodiacPrediction = {
 };
 
 export type GameState = {
-  questions: CMKQuestion[];
+  questions: MKKQuestion[];
   currentQuestionIndex: number;
-  choices: CMKChoice[];
+  choices: MKKChoice[];
   prediction: ZodiacPrediction | null;
   actualSign: ZodiacSign | null;
   friendGuesses: Array<{ name: string; guess: ZodiacSign }>;
@@ -48,7 +48,7 @@ export type GameState = {
 
 export type GameContextType = {
   state: GameState;
-  makeChoice: (choice: { communion: string; marry: string; kill: string }) => void;
+  makeChoice: (choice: { kiss: string; marry: string; kill: string }) => void;
   submitActualSign: (sign: ZodiacSign) => void;
   addFriendGuess: (name: string, guess: ZodiacSign) => void;
   resetGame: () => void;

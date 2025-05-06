@@ -1,6 +1,6 @@
 import React from 'react';
 import { useGame } from '../contexts/GameContext';
-import CMKQuestion from './CMKQuestion';
+import MKKQuestion from './MKKQuestion';
 import ResultsDisplay from './ResultsDisplay';
 import SummaryDisplay from './SummaryDisplay';
 import StatsDisplay from './StatsDisplay';
@@ -29,7 +29,7 @@ const GameContainer: React.FC = () => {
   
   return (
     <div className="flex items-center justify-center">
-      <CMKQuestion 
+      <MKKQuestion 
         question={state.questions[state.currentQuestionIndex]}
         onSubmit={makeChoice}
         questionNumber={state.currentQuestionIndex + 1}

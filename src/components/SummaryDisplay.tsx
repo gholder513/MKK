@@ -15,19 +15,19 @@ const SummaryDisplay: React.FC = () => {
           const question = state.questions.find(q => q.id === choice.questionId);
           if (!question) return null;
           
-          const communionOption = question.options.find(o => o.id === choice.communion);
+          const kissOption = question.options.find(o => o.id === choice.kiss);
           const marryOption = question.options.find(o => o.id === choice.marry);
           const killOption = question.options.find(o => o.id === choice.kill);
           
-          if (!communionOption || !marryOption || !killOption) return null;
+          if (!kissOption || !marryOption || !killOption) return null;
           
           return (
             <div key={index} className="bg-gray-800 rounded-lg p-4">
               <h4 className="text-white font-medium mb-2">Question {index + 1}</h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
                 <div className="bg-purple-900 p-3 rounded">
-                  <p className="text-purple-200 text-sm mb-1">Communion</p>
-                  <p className="text-white">{communionOption.text}</p>
+                  <p className="text-purple-200 text-sm mb-1">Kiss</p>
+                  <p className="text-white">{kissOption.text}</p>
                 </div>
                 <div className="bg-yellow-900 p-3 rounded">
                   <p className="text-yellow-200 text-sm mb-1">Marry</p>
